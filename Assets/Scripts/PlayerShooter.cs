@@ -8,9 +8,11 @@ public class PlayerShooter : MonoBehaviour
     [SerializeField] private GameObject bullet; //Temp
     [SerializeField] private Transform shotPoint;
 
-    private void Awake()
-    {
+    private GameManager gameManager;
 
+    private void Start()
+    {
+        gameManager = GameManager.instance;
     }
 
     private void FixedUpdate()
@@ -20,10 +22,7 @@ public class PlayerShooter : MonoBehaviour
 
     private void MousePoint()
     {
-        Vector2 mousePointer;
-
-        mousePointer.x = mousePos().x;
-        mousePointer.y = mousePos().y;
+        Vector2 mousePointer = gameManager.MousePos();
 
         float degree = Mathf.Atan2(mousePointer.y, mousePointer.x) * Mathf.Rad2Deg;
 
@@ -32,14 +31,17 @@ public class PlayerShooter : MonoBehaviour
 
     public void OnFire() //Left Mouse Buttons
     {
-        Instantiate(bullet, shotPoint.position, shotPoint.rotation);
+        PoolManager.instance.GetObject("PlayerBullet", shotPoint.position, shotPoint.rotation);
+        //Instantiate(bullet, shotPoint.position, shotPoint.rotation);
     }
 
-    private Vector3 mousePos() //Temp
+    /*
+    public Vector3 mousePos() //Temp
     {
         Vector3 point = Camera.main.ScreenToWorldPoint(new Vector3(Input.mousePosition.x,
                 Input.mousePosition.y, -Camera.main.transform.position.z));
 
         return point;
     }
+    */
 }

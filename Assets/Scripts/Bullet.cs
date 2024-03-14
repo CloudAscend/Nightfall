@@ -4,15 +4,21 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float moveSpeed;
+    public string tag;
+    private void Update()
     {
-        
+        transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        
+        if (other.gameObject.CompareTag("OutMap"))
+            OutMap();
+    }
+
+    private void OutMap()
+    {
+        PoolManager.instance.PoolObject(tag, gameObject);
     }
 }
