@@ -6,6 +6,8 @@ public class Bullet : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
     public string tag;
+
+    [SerializeField] private string damageTag; //Temp
     private void Update()
     {
         transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
@@ -13,7 +15,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag("OutMap"))
+        if (other.gameObject.CompareTag("OutMap"))  
             OutMap();
     }
 

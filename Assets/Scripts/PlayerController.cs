@@ -11,7 +11,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody2D rigidbody;
 
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     public static InputAction moveAction;
 
