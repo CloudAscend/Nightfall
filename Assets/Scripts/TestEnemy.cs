@@ -4,17 +4,29 @@ using UnityEngine;
 
 public class TestEnemy : MonoBehaviour
 {
+    public int maxHP;
+    public int HP;
+
     public Transform target;
     public float moveSpeed;
 
     private Rigidbody2D rigidbody;
     private Vector2 targetVec;
 
-    private void Awake()
+    private PoolManager poolManager;
+    public string tag;
+
+    private void Awake() //자기 자신한테 적용
     {
         rigidbody = GetComponent<Rigidbody2D>();
+    }
 
+    private void Start() //남의 것에 적용
+    {
         target = GameManager.instance.playerController.transform;
+        poolManager = PoolManager.instance;
+
+        HP = maxHP;
     }
 
     private void Update()
@@ -42,4 +54,22 @@ public class TestEnemy : MonoBehaviour
         Debug.DrawRay(transform.position, targetVec * 2f, Color.blue);
         RaycastHit2D hitler = Physics2D.Raycast(transform.position, targetVec, 2f, LayerMask.GetMask("Obstacle"));
     }
+
+    //Temp {
+    public void Damage(int damage)
+    {
+        HP -= damage;
+
+        if (HP <= 0)
+        {
+            HP = 0;
+            Death();
+        }
+    }
+
+    private void Death()
+    {
+        poolManager.PoolObject(tag, gameObject);
+    }
+    // }
 }

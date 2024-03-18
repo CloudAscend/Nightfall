@@ -7,6 +7,7 @@ TagManager:
   - OutMap
   - Obstacle
   - Entity
+  - Enemy
   layers:
   - Default
   - TransparentFX

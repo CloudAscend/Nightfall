@@ -135,9 +135,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHp: 0
   hp: 0
-  enemyPrefab:
-  - {fileID: 7814180311386675438, guid: 46e636033c4caf54f8194202da8f2fdc, type: 3}
-  - {fileID: 4628721217084176387, guid: fd54b10cebcb70f4283d05008d3b1506, type: 3}
-  - {fileID: 855582171288195897, guid: 33e7fe254d8f37d49bba53d697f75caf, type: 3}
+  enemyTag:
+  - Enemy1
+  - Enemy2
+  - Enemy3
   spawnCount: 5
   spawnTime: 15

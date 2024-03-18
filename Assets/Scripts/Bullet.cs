@@ -5,9 +5,9 @@ using UnityEngine;
 public class Bullet : MonoBehaviour
 {
     [SerializeField] private float moveSpeed;
+    public int damageSet;
     public string tag;
 
-    [SerializeField] private string damageTag; //Temp
     private void Update()
     {
         transform.Translate(Vector2.up * moveSpeed * Time.deltaTime);
@@ -17,6 +17,9 @@ public class Bullet : MonoBehaviour
     {
         if (other.gameObject.CompareTag("OutMap"))  
             OutMap();
+
+        if (other.gameObject.CompareTag("Enemy"))
+            other.gameObject.GetComponent<TestEnemy>().Damage(damageSet);
     }
 
     private void OutMap()

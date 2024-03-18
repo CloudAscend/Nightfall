@@ -18,6 +18,8 @@ public class CurserTest : MonoBehaviour //This Class is Parent
 
     public string tag; //Temp
 
+    public LayerMask layer; //Temp
+
     //Trap
 
     private void Start()
@@ -45,9 +47,17 @@ public class CurserTest : MonoBehaviour //This Class is Parent
 
         if (fireAction.triggered) //Temp(BoxCast를 넣어 isWall인지 확인 후 가능하면 작동)
         {
-            isMove = false;
-            spriteRend.color = Color.red;
+            if (!OriginCast())
+            {
+                isMove = false;
+                spriteRend.color = Color.red;
+            }
         }
+    }
+
+    private bool OriginCast()
+    {
+        return Physics2D.BoxCast(transform.position, transform.localScale * 0.8f, 0, Vector2.zero, 0, layer);
     }
 
     private void OnTriggerEnter2D(Collider2D other) //Temp
